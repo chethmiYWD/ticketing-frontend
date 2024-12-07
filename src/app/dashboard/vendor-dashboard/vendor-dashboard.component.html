@@ -1,0 +1,48 @@
+<div class="vendor-dashboard">
+    <header class="dashboard-header">
+      <h1>Vendor Dashboard</h1>
+      <button class="logout-btn" (click)="logout()">Logout</button>
+    </header>
+  
+    <section class="stats-section">
+      <h2>Ticket Statistics</h2>
+      <div class="stats">
+        <div class="stat">
+          <h3>Total Tickets</h3>
+          <p>{{ totalTickets }}</p>
+        </div>
+        <div class="stat">
+          <h3>Available Tickets</h3>
+          <p>{{ availableTickets }}</p>
+        </div>
+        <div class="stat">
+          <h3>Tickets Sold</h3>
+          <p>{{ ticketsSold }}</p>
+        </div>
+      </div>
+    </section>
+  
+    <section class="control-section">
+      <h2>Control Panel</h2>
+      <form (ngSubmit)="releaseTickets()">
+        <label for="releaseCount">Tickets to Release:</label>
+        <input
+          id="releaseCount"
+          type="number"
+          [(ngModel)]="releaseCount"
+          name="releaseCount"
+          required
+          min="1"
+        />
+        <button type="submit">Release Tickets</button>
+      </form>
+    </section>
+  
+    <section class="logs-section">
+      <h2>Activity Log</h2>
+      <div class="logs">
+        <p *ngFor="let log of activityLogs">{{ log }}</p>
+      </div>
+    </section>
+  </div>
+  
