@@ -1,29 +1,40 @@
-<div class="customer-dashboard">
-    <h2>Customer Dashboard</h2>
-  
-    <!-- Ticket Retrieval Section -->
-    <div class="ticket-retrieval">
-      <label for="retrieveCount">Tickets to Retrieve:</label>
-      <input
-        type="number"
-        id="retrieveCount"
-        [(ngModel)]="retrieveCount"
-        name="retrieveCount"
-        min="1"
-        placeholder="Enter number of tickets"
-      />
-      <button (click)="retrieveTickets()">Retrieve Tickets</button>
-    </div>
-  
-    <!-- Error/Success Messages -->
-    <div *ngIf="message" class="message">
-      {{ message }}
-    </div>
-  
-    <!-- Current Ticket Pool Status -->
-    <div class="ticket-pool-status">
-      <h3>Ticket Pool Status</h3>
-      <p>Total Tickets Available: {{ ticketPool }}</p>
+<!-- Navbar with Links to Calendar, History, and Profile -->
+<div class="navbar">
+  <a routerLink="calendar" routerLinkActive="active-link">Calendar</a>
+  <a routerLink="history" routerLinkActive="active-link">History</a>
+  <a routerLink="profile" routerLinkActive="active-link">Profile</a>
+</div>
+
+<!-- Main Dashboard Content Area -->
+<div class="dashboard">
+  <!-- Search Bar Section -->
+  <div class="search-bar">
+    <input
+      type="text"
+      placeholder="Search by artist or event"
+      [(ngModel)]="searchQuery"
+      (input)="onSearch()"
+    />
+  </div>
+
+  <!-- Event Cards Display -->
+  <div class="events-grid">
+    <div
+      class="event-card"
+      *ngFor="let event of filteredEvents"
+      (click)="viewEventDetails(event)"
+    >
+      <img [src]="event.imageUrl" alt="Event Image" />
+      <div class="event-info">
+        <h3>{{ event.name }}</h3>
+        <p>{{ event.date | date: 'mediumDate' }}</p>
+        <button (click)="bookTicket(event, $event)">Book Ticket</button>
+      </div>
     </div>
   </div>
-  
+</div>
+
+<!-- Router Outlet for Calendar, History, and Profile Pages -->
+<div class="content-area">
+  <router-outlet></router-outlet>
+</div>

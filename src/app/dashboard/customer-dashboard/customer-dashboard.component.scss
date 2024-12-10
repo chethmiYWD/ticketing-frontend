@@ -1,55 +1,87 @@
-.customer-dashboard {
-    padding: 20px;
-    font-family: Arial, sans-serif;
-  
-    h2 {
-      margin-bottom: 20px;
+.navbar {
+  display: flex;
+  justify-content: space-around;
+  background-color: #f8f9fa;
+  padding: 1rem;
+  border-bottom: 1px solid #ddd;
+
+  a {
+    text-decoration: none;
+    color: #007bff;
+    font-weight: bold;
+    cursor: pointer;
+    &:hover {
+      text-decoration: none;
+      transform: translateX(10%);
+      font-size: 18px;
     }
-  
-    .ticket-retrieval {
-      margin-bottom: 20px;
-  
-      label {
-        font-weight: bold;
-        margin-right: 10px;
+  }
+}
+
+.dashboard {
+  padding: 2rem;
+
+  .search-bar {
+    margin-bottom: 2rem;
+
+    input {
+      width: 100%;
+      padding: 0.5rem;
+      font-size: 1rem;
+      border: 1px solid #ccc;
+      border-radius: 5px;
+    }
+  }
+
+  .events-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 1.5rem;
+
+    .event-card {
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      overflow: hidden;
+      box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+      cursor: pointer;
+      transition: transform 0.2s;
+
+      &:hover {
+        transform: translateY(-5px);
       }
-  
-      input {
-        padding: 5px;
-        margin-right: 10px;
-        border: 1px solid #ccc;
-        border-radius: 4px;
+
+      img {
+        width: 100%;
+        height: 150px;
+        object-fit: cover;
       }
-  
-      button {
-        padding: 5px 10px;
-        background-color: #28a745;
-        color: white;
-        border: none;
-        border-radius: 4px;
-        cursor: pointer;
-  
-        &:hover {
-          background-color: #218838;
+
+      .event-info {
+        padding: 1rem;
+
+        h3 {
+          margin: 0;
+          font-size: 1.25rem;
+        }
+
+        p {
+          margin: 0.5rem 0;
+          color: #666;
+        }
+
+        button {
+          background-color: #007bff;
+          color: white;
+          border: none;
+          padding: 0.5rem 1rem;
+          border-radius: 5px;
+          cursor: pointer;
+
+          &:hover {
+            background-color: #0056b3;
+          }
         }
       }
     }
-  
-    .message {
-      margin-top: 10px;
-      font-weight: bold;
-      color: #dc3545;
-    }
-  
-    .ticket-pool-status {
-      h3 {
-        margin-bottom: 10px;
-      }
-  
-      p {
-        font-size: 16px;
-        font-weight: bold;
-      }
-    }
   }
-  
+}

@@ -1,0 +1,23 @@
+<div class="my-events-container">
+    <!-- Back to Dashboard Button -->
+    <button class="back-btn" (click)="goBack()">Back to Dashboard</button>
+  
+    <h2>My Events</h2>
+  
+    <div class="event-list">
+      <div class="event-card" *ngFor="let event of events">
+        <div class="event-details">
+          <h3>{{ event.name }}</h3>
+          <p><strong>Date:</strong> {{ event.date | date: 'mediumDate' }}</p>
+          <p><strong>Tickets Sold:</strong> {{ event.ticketsSold }} / {{ event.maxTickets }}</p>
+          <p><strong>Price:</strong> ${{ event.ticketPrice }}</p>
+        </div>
+        <div class="event-analytics">
+          <h4>Analytics</h4>
+          <p>Total Tickets Sold: {{ event.ticketsSold }}</p>
+          <p>Available Tickets: {{ event.maxTickets - event.ticketsSold }}</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

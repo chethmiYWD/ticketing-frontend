@@ -1,49 +1,70 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
+import { Router } from '@angular/router';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'app-vendor-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule],
+  imports: [CommonModule, FormsModule, RouterModule],
   templateUrl: './vendor-dashboard.component.html',
   styleUrls: ['./vendor-dashboard.component.scss'],
 })
-export class VendorDashboardComponent implements OnInit {
-  totalTickets: number = 0; // Total tickets in the system
-  availableTickets: number = 0; // Tickets available for purchase
-  ticketsSold: number = 0; // Tickets sold to customers
-  releaseCount: number = 1; // Number of tickets to release
-  activityLogs: string[] = []; // Activity logs for vendor actions
+export class VendorDashboardComponent {
+  events = [
+    {
+      id: 1,
+      name: 'Music Festival',
+      date: new Date('2024-12-20'),
+      maxTickets: 1000,
+      ticketsSold: 200,
+      ticketPrice: 50,
+    },
+    {
+      id: 2,
+      name: 'Art Gallery Exhibition',
+      date: new Date('2024-12-15'),
+      maxTickets: 500,
+      ticketsSold: 100,
+      ticketPrice: 30,
+    },
+  ];
 
-  ngOnInit(): void {
-    this.initializeStats();
+  newEvent = { name: '', date: '', maxTickets: 0, ticketPrice: 0 }; // Model for the new event form
+  showAddEventForm = false; // Control the form visibility
+  selectedEvent: any = null; // For displaying analytics for a selected event
+
+  constructor(private router: Router) {}
+
+  // Toggles visibility of the Add Event Form
+  toggleAddEventForm(): void {
+    this.showAddEventForm = !this.showAddEventForm;
   }
 
-  initializeStats(): void {
-    // Fetch initial stats from the backend (replace with actual API call)
-    this.totalTickets = 100; // Example data
-    this.availableTickets = 80; // Example data
-    this.ticketsSold = 20; // Example data
+  goBack(): void {
+    this.showAddEventForm = false; // Hide form
+    this.router.navigate(['/dashboard/vendor-dashboard']); // Navigate back to Vendor Dashboard
   }
 
-  releaseTickets(): void {
-    if (this.releaseCount > 0) {
-      this.availableTickets += this.releaseCount;
-      this.totalTickets += this.releaseCount;
-      this.addLog(`Released ${this.releaseCount} tickets.`);
+  // Submit the new event
+  onSubmit(eventForm: any): void {
+    if (eventForm.valid) {
+      const newEvent = {
+        ...this.newEvent,
+        id: this.events.length + 1,
+        ticketsSold: 0, // Initially no tickets sold
+        date: new Date(this.newEvent.date), // Convert string to Date object
+      };
+      this.events.push(newEvent);
+      this.newEvent = { name: '', date: '', maxTickets: 0, ticketPrice: 0 }; // Reset form
+      this.showAddEventForm = false; // Hide form after submission
     }
   }
+  
 
-  addLog(message: string): void {
-    this.activityLogs.unshift(`${new Date().toLocaleString()}: ${message}`);
-    if (this.activityLogs.length > 50) {
-      this.activityLogs.pop(); // Keep log size manageable
-    }
-  }
-
-  logout(): void {
-    // Implement logout functionality here
-    console.log('Logged out');
+  // Select an event to view analytics
+  viewEventAnalytics(event: any): void {
+    this.selectedEvent = event;
   }
 }

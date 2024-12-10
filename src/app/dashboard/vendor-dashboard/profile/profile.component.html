@@ -1,0 +1,16 @@
+<div class="profile-container">
+    <!-- Back to Dashboard Button -->
+    <button class="back-btn" (click)="goBack()">Back to Dashboard</button>
+  
+    <!-- Profile Information -->
+    <h2>My Profile</h2>
+    <div class="profile-details">
+      <p><strong>Name:</strong> {{ vendor.name }}</p>
+      <p><strong>Email:</strong> {{ vendor.email }}</p>
+      <p><strong>Contact:</strong> {{ vendor.contact }}</p>
+    </div>
+  
+    <!-- Logout Button -->
+    <button class="logout-btn" (click)="logout()">Logout</button>
+  </div>
+  
