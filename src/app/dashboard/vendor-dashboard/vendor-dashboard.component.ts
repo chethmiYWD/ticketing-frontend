@@ -4,6 +4,8 @@ import { EventService } from '../../services/event.service'; // Import EventServ
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
+import { AuthService } from '../../services/api.service';
+
 
 @Component({
   selector: 'app-vendor-dashboard',
@@ -25,7 +27,7 @@ export class VendorDashboardComponent implements OnInit {
   showAddEventForm = false; // Control the form visibility
   selectedEvent: any = null; // For displaying analytics for a selected event
 
-  constructor(private router: Router, private eventService: EventService) {}
+  constructor(private router: Router, private eventService: EventService, private authService: AuthService) {}
 
   ngOnInit(): void {
     this.fetchEvents(); // Fetch events when the component is initialized
@@ -98,5 +100,10 @@ export class VendorDashboardComponent implements OnInit {
         console.error('Error booking ticket:', error);
       }
     );
+  }
+
+  logout(): void {
+    this.authService.logout(); // Ensure logout method is defined in AuthService
+    this.router.navigate(['/']); // Redirect to home page after logout
   }
 }
