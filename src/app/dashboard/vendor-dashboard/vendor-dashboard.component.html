@@ -1,17 +1,18 @@
 <!-- Vendor Dashboard -->
 <div class="vendor-dashboard">
   <button class="logout-btn" (click)="logout()">Logout</button>
+
   <!-- Navbar -->
   <div class="navbar">
     <a routerLink="my-events" routerLinkActive="active-link">My Events</a>
   </div>
 
-  <!-- Content Area -->
+
   <div class="content-area">
     <!-- Back Button (Visible when the form is visible) -->
     <button *ngIf="showAddEventForm" (click)="goBack()" class="back-btn">Back to Dashboard</button>
 
-    <!-- Add Event Button (Hidden when the form is visible) -->
+    <!-- Add Event Button -->
     <button *ngIf="!showAddEventForm" (click)="toggleAddEventForm()" class="add-event-btn">Add New Event</button>
 
     <!-- Add Event Form -->
@@ -30,7 +31,6 @@
         <label for="ticketPrice">Ticket Price</label>
         <input type="number" id="ticketPrice" [(ngModel)]="newEvent.ticketPrice" name="ticketPrice" required />
 
-        <!-- Add Total Tickets and Ticket Release Rate Inputs -->
         <label for="totalTickets">Total Tickets</label>
         <input type="number" id="totalTickets" [(ngModel)]="newEvent.totalTickets" name="totalTickets" required />
 
@@ -41,7 +41,7 @@
       </form>
     </div>
 
-    <!-- Event List (My Events) -->
+    <!-- Event List -->
     <div *ngIf="!showAddEventForm" class="event-list">
       <div class="event-card" *ngFor="let event of events">
         <div class="event-details">
@@ -56,7 +56,6 @@
           <p>Available Tickets: {{ event.totalTickets - event.ticketsSold }}</p>
           <p>Ticket Release Rate: {{ event.ticketReleaseRate | percent }}</p>
         </div>
-        <!-- <button (click)="bookTicket(event.id)">Book Ticket</button> -->
       </div>
     </div>
 

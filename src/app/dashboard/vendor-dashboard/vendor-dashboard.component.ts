@@ -14,6 +14,7 @@ import { AuthService } from '../../services/api.service';
   templateUrl: './vendor-dashboard.component.html',
   styleUrls: ['./vendor-dashboard.component.scss'],
 })
+
 export class VendorDashboardComponent implements OnInit {
   events: any[] = []; // Holds events fetched from the backend
   newEvent = {
@@ -25,7 +26,7 @@ export class VendorDashboardComponent implements OnInit {
     ticketReleaseRate: 0,
   };
   showAddEventForm = false; // Control the form visibility
-  selectedEvent: any = null; // For displaying analytics for a selected event
+  selectedEvent: any = null; 
 
   constructor(private router: Router, private eventService: EventService, private authService: AuthService) {}
 
@@ -38,12 +39,12 @@ export class VendorDashboardComponent implements OnInit {
     this.showAddEventForm = !this.showAddEventForm;
   }
 
+  // Back button to vendor dashboard
   goBack(): void {
     this.showAddEventForm = false; // Hide form
-    this.router.navigate(['/dashboard/vendor-dashboard']); // Navigate back to Vendor Dashboard
+    this.router.navigate(['/dashboard/vendor-dashboard']); 
   }
 
-  // Submit the new event
   // Submit the new event
   onSubmit(eventForm: any): void {
     if (eventForm.valid) {
@@ -77,6 +78,7 @@ export class VendorDashboardComponent implements OnInit {
     }
   }
   
+  // Fetch events function
   fetchEvents(): void {
     this.eventService.getEvents().subscribe(
       (events) => {
@@ -102,6 +104,7 @@ export class VendorDashboardComponent implements OnInit {
     );
   }
 
+  // Logout function
   logout(): void {
     this.authService.logout(); // Ensure logout method is defined in AuthService
     this.router.navigate(['/']); // Redirect to home page after logout

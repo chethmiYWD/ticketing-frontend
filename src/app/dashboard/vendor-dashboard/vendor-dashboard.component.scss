@@ -25,7 +25,7 @@
   background-color: darkblue;
 }
 
-
+// Styles for nav bar
 .navbar {
   display: flex;
   justify-content: space-around;
@@ -50,6 +50,7 @@
   margin-top: 30px;
 }
 
+// Add event button
 .add-event-btn {
   background-color: #007bff;
   color: white;
@@ -72,6 +73,7 @@
   }
 }
 
+// Add event form styling
 .add-event-form {
   background-color: #f9f9f9;
   border: 1px solid #ddd;
@@ -118,6 +120,7 @@
   flex-direction: column;
 }
 
+// Styles for event cards
 .event-card {
   display: flex;
   justify-content: space-between;
