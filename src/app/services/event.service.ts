@@ -17,4 +17,9 @@ export class EventService {
   getEvents(): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl);
   }
+
+  bookTicket(eventId: string) {
+    return this.http.put<any>(`http://localhost:8080/events/${eventId}/bookTicket`, {});
+  }
+  
 }

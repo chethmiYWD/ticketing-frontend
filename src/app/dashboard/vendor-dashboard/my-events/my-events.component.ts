@@ -1,6 +1,7 @@
-import { Component } from '@angular/core';
+import { Component, OnInit} from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
+import { EventService } from '../../../services/event.service';
 
 @Component({
   selector: 'app-my-events',
@@ -9,37 +10,28 @@ import { Router } from '@angular/router';
   templateUrl: './my-events.component.html',
   styleUrls: ['./my-events.component.scss'],
 })
-export class MyEventsComponent {
-  events = [
-    {
-      id: 1,
-      name: 'Music Fest',
-      date: new Date('2024-12-20'),
-      maxTickets: 500,
-      ticketsSold: 250,
-      ticketPrice: 50,
-    },
-    {
-      id: 2,
-      name: 'Art Expo',
-      date: new Date('2024-12-15'),
-      maxTickets: 300,
-      ticketsSold: 200,
-      ticketPrice: 30,
-    },
-    {
-      id: 3,
-      name: 'Tech Talk',
-      date: new Date('2024-12-10'),
-      maxTickets: 150,
-      ticketsSold: 100,
-      ticketPrice: 100,
-    },
-  ];
+export class MyEventsComponent implements OnInit {
+  events: any[] = [];  // Holds events fetched from the backend
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private eventService: EventService) {}
 
-  // Navigate back to the Vendor Dashboard
+  ngOnInit(): void {
+    this.fetchEvents();  // Fetch events when the component is initialized
+  }
+
+  // Fetch all events from the backend
+  fetchEvents(): void {
+    this.eventService.getEvents().subscribe(
+      (events) => {
+        this.events = events;  // Store the fetched events
+      },
+      (error) => {
+        console.error('Error fetching events:', error);
+      }
+    );
+  }
+
+  // Navigate back to the vendor dashboard
   goBack(): void {
     this.router.navigate(['/dashboard/vendor-dashboard']);
   }

@@ -56,7 +56,7 @@
           <p>Available Tickets: {{ event.totalTickets - event.ticketsSold }}</p>
           <p>Ticket Release Rate: {{ event.ticketReleaseRate | percent }}</p>
         </div>
-        <button (click)="viewEventAnalytics(event)">View Analytics</button>
+        <!-- <button (click)="bookTicket(event.id)">Book Ticket</button> -->
       </div>
     </div>
 

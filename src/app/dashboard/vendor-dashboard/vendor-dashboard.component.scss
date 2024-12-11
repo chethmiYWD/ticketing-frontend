@@ -42,6 +42,16 @@
   margin-left: 650px;
 }
 
+@media (max-width: 768px) {
+  .add-event-btn {
+    position: fixed;
+    bottom: 20px;
+    left: 0;
+    transform: translateX(-50%);
+    z-index: 10;  /* To ensure it's above other content */
+  }
+}
+
 .add-event-form {
   background-color: #f9f9f9;
   border: 1px solid #ddd;

@@ -54,11 +54,16 @@ export class CustomerDashboardComponent implements OnInit {
 
   // Book a ticket for the selected event
   bookTicket(event: any, e: Event): void {
-    e.stopPropagation(); // Prevent triggering parent click event
-    console.log('Booking ticket for:', event);
-
-    // Simulating ticket booking logic
-    // You can add logic here to interact with the backend if required
-    window.alert(`Ticket for "${event.name}" has been booked successfully!`);
+    e.stopPropagation();
+    this.eventService.bookTicket(event.id).subscribe(
+      (updatedEvent) => {
+        window.alert(`Ticket for "${event.name}" has been booked successfully!`);
+        console.log('Updated event:', updatedEvent);
+        event.ticketsSold = updatedEvent.ticketsSold; // Update locally if needed
+      },
+      (error) => {
+        console.error('Error booking ticket:', error);
+      }
+    );
   }
 }

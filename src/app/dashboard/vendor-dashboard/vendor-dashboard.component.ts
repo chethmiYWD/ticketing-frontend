@@ -75,9 +75,6 @@ export class VendorDashboardComponent implements OnInit {
     }
   }
   
-
-
-  // Fetch all events from the backend
   fetchEvents(): void {
     this.eventService.getEvents().subscribe(
       (events) => {
@@ -90,8 +87,16 @@ export class VendorDashboardComponent implements OnInit {
     );
   }
 
-  // Select an event to view analytics
-  viewEventAnalytics(event: any): void {
-    this.selectedEvent = event;
+  // Update the tickets sold when a ticket is booked
+  bookTicket(eventId: string): void {
+    this.eventService.bookTicket(eventId).subscribe(
+      (updatedEvent) => {
+        console.log('Ticket booked successfully:', updatedEvent);
+        this.fetchEvents(); // Refresh the events to get the updated tickets sold
+      },
+      (error) => {
+        console.error('Error booking ticket:', error);
+      }
+    );
   }
 }
