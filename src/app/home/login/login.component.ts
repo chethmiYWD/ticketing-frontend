@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { Router } from '@angular/router';
-import { AuthService } from '../../services/api.service';
+import { HttpClient } from '@angular/common/http';
 
 @Component({
   selector: 'app-login',
@@ -11,49 +11,55 @@ import { AuthService } from '../../services/api.service';
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss'],
 })
+
 export class LoginComponent {
-  credentials = {
-    email: '',
-    password: ''
-  };
+  email: string = '';
+  password: string = '';
+  errorMessage: string = '';  // Add the errorMessage property
 
-  errorMessage: string | null = null; // Error message display
+  constructor(private http: HttpClient, private router: Router) {}
 
-  constructor(private authService: AuthService, private router: Router) {}
-
-  onSubmit(loginForm: any): void {
-    if (loginForm.valid) {
-      this.errorMessage = null; // Clear previous errors
-      this.authService.login(this.credentials).subscribe(
-        (response) => {
-          // Navigate based on user role
-          // if (response.role === 'Customer') {
-          //   this.router.navigate(['/dashboard/customer-dashboard']);
-          // } else if (response.role === 'Vendor') {
-          //   this.router.navigate(['/dashboard/vendor-dashboard']);
-          // } else {
-          //   this.errorMessage = 'Unknown user role. Please contact support.';
-          // }
-        },
-        (error) => {
-          // Display error message for login failure
-          this.errorMessage = 'Login failed. Please check your credentials and try again.';
-          console.error('Login error:', error);
-        }
-      );
-    } else {
-      this.validateForm();
+  login(form: any) {
+    if (form.invalid) {
+      return; // Prevent submission if the form is invalid
     }
-  }
 
-  private validateForm(): void {
-    // Simple form validation
-    if (!this.credentials.email) {
-      this.errorMessage = 'Email is required.';
-    } else if (!this.credentials.password) {
-      this.errorMessage = 'Password is required.';
-    } else {
-      this.errorMessage = 'Please provide valid credentials.';
+    const loginData = {
+      email: this.email,
+      password: this.password
+    };
+
+    this.http.post('http://localhost:8080/auth/login', loginData)
+  .subscribe(
+    (response: any) => {
+      console.log('Login successful:', response);
+      console.log('User role:', response.role); // Log the role
+      // Redirect based on role
+      if (response.role === 'Customer') {
+        this.router.navigate(['/customer-dashboard']);
+      } else if (response.role === 'Vendor') {
+        this.router.navigate(['/vendor-dashboard']);
+      } else {
+        console.error('Unknown role:', response.role);
+      }
+    },
+    (error) => {
+      console.error('Login error:', error);
+      this.errorMessage = 'Invalid email or password';  // Set the error message
     }
-  }
+  );
 }
+}
+
+
+//   private validateForm(): void {
+//     // Simple form validation
+//     if (!this.credentials.email) {
+//       this.errorMessage = 'Email is required.';
+//     } else if (!this.credentials.password) {
+//       this.errorMessage = 'Password is required.';
+//     } else {
+//       this.errorMessage = 'Please provide valid credentials.';
+//     }
+//   }
+// }

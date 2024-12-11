@@ -23,9 +23,5 @@ export class AuthService {
   registerCustomer(customer: any): Observable<any> {
     return this.http.post<any>(`${this.apiUrl}/register`, customer);
   }
-  // Vendor Login
-  login(credentials: { email: string; password: string }): Observable<any> {
-    return this.http.post(`${this.apiUrl}/login`, credentials);
-  }
-  
+ 
 }

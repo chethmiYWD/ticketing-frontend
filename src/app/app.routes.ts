@@ -14,10 +14,10 @@ export const routes: Routes = [
   { path: '', component: HomeComponent }, // Home route
   { path: 'login', component: LoginComponent }, // Login route
   { path: 'register', component: RegisterComponent }, // Register route
-  { path: 'dashboard/vendor-dashboard', component: VendorDashboardComponent },
-  { path: 'dashboard/vendor-dashboard/my-events', component: MyEventsComponent },
+  { path: 'vendor-dashboard', component: VendorDashboardComponent },
+  { path: 'vendor-dashboard/my-events', component: MyEventsComponent },
   { path: 'dashboard/vendor-dashboard/profile', component: ProfileComponent},
-  { path: 'dashboard/customer-dashboard', component: CustomerDashboardComponent},
+  { path: 'customer-dashboard', component: CustomerDashboardComponent},
   { path: 'dashboard/customer-dashboard/history', component: HistoryComponent },
   { path: 'dashboard/customer-dashboard/profile', component: ProfileComponent },
   { path: '**', redirectTo: '' }, // Redirect invalid routes to Home
