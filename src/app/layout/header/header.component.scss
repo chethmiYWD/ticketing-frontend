@@ -1,3 +1,4 @@
+// Styles for header component
 .header {
     background-color: #333;
     color: #fff;
@@ -13,44 +14,7 @@
         font-weight: bold;
         color: #fff;
         text-decoration: none;
-      }
-  
-      .nav-links {
-        list-style: none;
-        display: flex;
-        gap: 20px;
-  
-        li {
-          a {
-            color: #fff;
-            text-decoration: none;
-            font-size: 1rem;
-            cursor: pointer;
-  
-            &.active {
-              border-bottom: 2px solid #ff4081;
-            }
-  
-            &:hover {
-              color: #ff4081;
-            }
-          }
-  
-          .logout-btn {
-            background: none;
-            border: 1px solid #ff4081;
-            color: #ff4081;
-            padding: 5px 10px;
-            cursor: pointer;
-            border-radius: 5px;
-  
-            &:hover {
-              background-color: #ff4081;
-              color: #fff;
-            }
-          }
-        }
-      }
+      }     
     }
   }
   

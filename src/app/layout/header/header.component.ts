@@ -9,10 +9,4 @@ import { Router } from '@angular/router';
 })
 export class HeaderComponent {
   constructor(private router: Router) {}
-
-  // logout(): void {
-  //   // Handle logout logic
-  //   localStorage.removeItem('authToken'); // Example: Remove token from localStorage
-  //   this.router.navigate(['/login']); // Redirect to login page
-  // }
 }
