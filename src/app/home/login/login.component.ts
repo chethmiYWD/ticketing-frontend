@@ -33,7 +33,7 @@ export class LoginComponent {
   .subscribe(
     (response: any) => {
       console.log('Login successful:', response);
-      console.log('User role:', response.role); // Log the role
+      console.log('User role:', response.role); 
       // Redirect based on role
       if (response.role === 'Customer') {
         this.router.navigate(['/customer-dashboard']);
@@ -50,16 +50,3 @@ export class LoginComponent {
   );
 }
 }
-
-
-//   private validateForm(): void {
-//     // Simple form validation
-//     if (!this.credentials.email) {
-//       this.errorMessage = 'Email is required.';
-//     } else if (!this.credentials.password) {
-//       this.errorMessage = 'Password is required.';
-//     } else {
-//       this.errorMessage = 'Please provide valid credentials.';
-//     }
-//   }
-// }

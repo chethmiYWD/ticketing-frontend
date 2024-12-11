@@ -1,5 +1,8 @@
+<!-- Login container -->
 <div class="login-container">
   <h2> Login</h2>
+
+  <!-- Login form -->
   <form #loginForm="ngForm" (ngSubmit)="login(loginForm)">
     <label for="email">Email:</label>
     <input
@@ -21,6 +24,7 @@
 
     <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
 
+    <!-- Submit button -->
     <button type="submit" [disabled]="!loginForm.valid">Login</button>
   </form>
 </div>
