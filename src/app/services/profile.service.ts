@@ -1,17 +1,18 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
-import { Observable } from 'rxjs';
+// import { Injectable } from '@angular/core';
+// import { HttpClient } from '@angular/common/http';
+// import { Observable } from 'rxjs';
 
-@Injectable({
-  providedIn: 'root',
-})
-export class VendorProfileService {
-  private apiUrl = 'http://localhost:8080/vendor/profile';  // Adjust the URL as needed
+// @Injectable({
+//   providedIn: 'root'
+// })
+// export class VendorProfileService {
 
-  constructor(private http: HttpClient) {}
+//   private profileUrl = 'http://localhost:8080/vendors/profile';  // Backend endpoint for vendor profile
 
-  // Fetch vendor profile details from the backend
-  getVendorProfile(): Observable<any> {
-    return this.http.get<any>(this.apiUrl);
-  }
-}
+//   constructor(private http: HttpClient) {}
+
+//   // Fetch vendor profile by email
+//   getVendorProfile(email: string): Observable<any> {
+//     return this.http.get<any>(`http://localhost:8080/vendors/profile?email=${email}`);
+//   }
+// }

@@ -1,11 +1,10 @@
-<!-- Navbar with Links to Calendar, History, and Profile -->
-<div class="navbar">
-  <a routerLink="history" routerLinkActive="active-link">History</a>
-  <a routerLink="profile" routerLinkActive="active-link">Profile</a>
-</div>
+
 
 <!-- Main Dashboard Content Area -->
 <div class="dashboard">
+
+  <button class="logout-btn" (click)="logout()">Logout</button>
+
   <!-- Search Bar Section -->
   <div class="search-bar">
     <input
@@ -28,7 +27,6 @@
         <h3>{{ event.name }}</h3>
         <p><strong>Date:</strong> {{ event.date | date: 'mediumDate' }}</p>
         <p><strong>Price:</strong> ${{ event.ticketPrice }}</p>
-        <p><strong>Artist:</strong> {{ event.artist || 'N/A' }}</p>
         <button (click)="bookTicket(event, $event)">Book Ticket</button>
       </div>
     </div>

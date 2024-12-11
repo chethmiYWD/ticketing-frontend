@@ -33,6 +33,6 @@ export class MyEventsComponent implements OnInit {
 
   // Navigate back to the vendor dashboard
   goBack(): void {
-    this.router.navigate(['/dashboard/vendor-dashboard']);
+    this.router.navigate(['/vendor-dashboard']);
   }
 }

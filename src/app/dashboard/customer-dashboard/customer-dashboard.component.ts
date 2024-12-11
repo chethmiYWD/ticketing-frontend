@@ -3,6 +3,8 @@ import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
 import { EventService } from '../../services/event.service';
+import { AuthService } from '../../services/api.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-customer-dashboard',
@@ -16,7 +18,11 @@ export class CustomerDashboardComponent implements OnInit {
   filteredEvents: any[] = []; // Filtered events for search functionality
   searchQuery: string = ''; // Search query input by the user
 
-  constructor(private eventService: EventService) {}
+  constructor(
+    private eventService: EventService,
+    private authService: AuthService,
+    private router: Router
+  ) {}
 
   ngOnInit(): void {
     this.fetchEvents(); // Fetch events when the component initializes
@@ -65,5 +71,10 @@ export class CustomerDashboardComponent implements OnInit {
         console.error('Error booking ticket:', error);
       }
     );
+  }
+
+  logout(): void {
+    this.authService.logout(); // Call logout method in AuthService
+    this.router.navigate(['/']); // Redirect to login page
   }
 }
