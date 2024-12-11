@@ -1,6 +1,4 @@
-
-
-<!-- Main Dashboard Content Area -->
+<!-- Customer dashboard -->
 <div class="dashboard">
 
   <button class="logout-btn" (click)="logout()">Logout</button>
@@ -32,7 +30,7 @@
     </div>
   </div>
 
-  <!-- Show message if no events are found -->
+  <!-- Search bar -->
   <div *ngIf="filteredEvents.length === 0 && events.length > 0">
     <p>No events match your search criteria.</p>
   </div>
@@ -41,7 +39,3 @@
   </div>
 </div>
 
-<!-- Router Outlet for Calendar, History, and Profile Pages -->
-<div class="content-area">
-  <router-outlet></router-outlet>
-</div>

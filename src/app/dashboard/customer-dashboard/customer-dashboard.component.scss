@@ -1,4 +1,4 @@
-
+// Styles for the customer dashboard
 .dashboard {
   padding: 20px;
   max-width: 1200px;
@@ -23,17 +23,19 @@
   background-color: darkblue;
 }
 
-  .search-bar {
-    margin-bottom: 20px;
-    input {
-      width: 100%;
-      padding: 10px;
-      font-size: 16px;
-      border: 1px solid #ddd;
-      border-radius: 5px;
-    }
+// Styles for the search bar
+.search-bar {
+  margin-bottom: 20px;
+  input {
+    width: 100%;
+    padding: 10px;
+    font-size: 16px;
+    border: 1px solid #ddd;
+    border-radius: 5px;
   }
+}
 
+// Styles for event cards
   .events-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
@@ -46,11 +48,6 @@
       cursor: pointer;
       box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
 
-      img {
-        width: 100%;
-        height: 150px;
-        object-fit: cover;
-      }
 
       .event-info {
         padding: 10px;

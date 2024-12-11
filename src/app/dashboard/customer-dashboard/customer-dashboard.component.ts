@@ -15,7 +15,7 @@ import { Router } from '@angular/router';
 })
 export class CustomerDashboardComponent implements OnInit {
   events: any[] = []; // All events fetched from the backend
-  filteredEvents: any[] = []; // Filtered events for search functionality
+  filteredEvents: any[] = []; 
   searchQuery: string = ''; // Search query input by the user
 
   constructor(
@@ -33,8 +33,8 @@ export class CustomerDashboardComponent implements OnInit {
     this.eventService.getEvents().subscribe(
       (data) => {
         console.log('Fetched events:', data);
-        this.events = data; // Populate the events array
-        this.filteredEvents = [...this.events]; // Initially display all events
+        this.events = data; 
+        this.filteredEvents = [...this.events];
       },
       (error) => {
         console.error('Error fetching events:', error);
@@ -52,10 +52,9 @@ export class CustomerDashboardComponent implements OnInit {
     );
   }
 
-  // Navigate to event details (to be implemented)
+  // Navigate to event details 
   viewEventDetails(event: any): void {
     console.log('View event details:', event);
-    // Logic to navigate to event details page (e.g., using Router)
   }
 
   // Book a ticket for the selected event
@@ -65,7 +64,7 @@ export class CustomerDashboardComponent implements OnInit {
       (updatedEvent) => {
         window.alert(`Ticket for "${event.name}" has been booked successfully!`);
         console.log('Updated event:', updatedEvent);
-        event.ticketsSold = updatedEvent.ticketsSold; // Update locally if needed
+        event.ticketsSold = updatedEvent.ticketsSold; 
       },
       (error) => {
         console.error('Error booking ticket:', error);
@@ -73,8 +72,9 @@ export class CustomerDashboardComponent implements OnInit {
     );
   }
 
+  // Logout method
   logout(): void {
-    this.authService.logout(); // Call logout method in AuthService
+    this.authService.logout(); 
     this.router.navigate(['/']); // Redirect to login page
   }
 }
