@@ -10,14 +10,17 @@ export class EventService {
 
   constructor(private http: HttpClient) {}
 
+  // Create events method
   createEvent(event: any): Observable<any> {
     return this.http.post<any>('http://localhost:8080/events/add', event);
   }
 
+  // Method to fetch events
   getEvents(): Observable<any[]> {
     return this.http.get<any[]>(this.baseUrl);
   }
 
+  // Method to book an event
   bookTicket(eventId: string) {
     return this.http.put<any>(`http://localhost:8080/events/${eventId}/bookTicket`, {});
   }
