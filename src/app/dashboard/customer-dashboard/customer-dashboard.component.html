@@ -11,7 +11,7 @@
   <div class="search-bar">
     <input
       type="text"
-      placeholder="Search by artist or event"
+      placeholder="Search by event name or artist"
       [(ngModel)]="searchQuery"
       (input)="onSearch()"
     />
@@ -24,17 +24,23 @@
       *ngFor="let event of filteredEvents"
       (click)="viewEventDetails(event)"
     >
-      <img
-        [src]="event.imageUrl || 'assets/default-event.jpg'"
-        alt="Event Image"
-      />
+      
       <div class="event-info">
         <h3>{{ event.name }}</h3>
-        <p>{{ event.date | date: 'mediumDate' }}</p>
+        <p><strong>Date:</strong> {{ event.date | date: 'mediumDate' }}</p>
         <p><strong>Price:</strong> ${{ event.ticketPrice }}</p>
+        <p><strong>Artist:</strong> {{ event.artist || 'N/A' }}</p>
         <button (click)="bookTicket(event, $event)">Book Ticket</button>
       </div>
     </div>
+  </div>
+
+  <!-- Show message if no events are found -->
+  <div *ngIf="filteredEvents.length === 0 && events.length > 0">
+    <p>No events match your search criteria.</p>
+  </div>
+  <div *ngIf="events.length === 0">
+    <p>Loading events...</p>
   </div>
 </div>
 
