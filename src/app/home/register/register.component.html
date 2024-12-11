@@ -1,74 +1,43 @@
 <div class="register-container">
   <h2>Customer Registration</h2>
-  <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)" novalidate>
-    <!-- Name Field -->
-    <div>
-      <label for="name">Name:</label>
-      <input
-        type="text"
-        id="name"
-        name="name"
-        [(ngModel)]="customer['name']"
-        required
-      />
-      <div class="error" *ngIf="registerForm.submitted && !customer['name']">
-        Name is required.
-      </div>
-    </div>
-
-    <!-- Email Field -->
-    <div>
-      <label for="email">Email:</label>
-      <input
-        type="email"
-        id="email"
-        name="email"
-        [(ngModel)]="customer['email']"
-        required
-        email
-      />
-      <div class="error" *ngIf="registerForm.submitted && !customer['email']">
-        Email is required.
-      </div>
-    </div>
-
-    <!-- Password Field -->
-    <div>
-      <label for="password">Password:</label>
-      <input
-        type="password"
-        id="password"
-        name="password"
-        [(ngModel)]="customer['password']"
-        required
-        minlength="6"
-      />
-      <div class="error" *ngIf="registerForm.submitted && !customer['password']">
-        Password is required.
-      </div>
-    </div>
-
-    <!-- Contact Number Field -->
-    <div>
-      <label for="contact">Contact Number:</label>
-      <input
-        type="text"
-        id="contact"
-        name="contact"
-        [(ngModel)]="customer['contact']"
-        required
-        pattern="[0-9]{10}"
-      />
-      <div class="error" *ngIf="registerForm.submitted && !customer['contact']">
-        Contact number is required.
-      </div>
-    </div>
-
-    <!-- Submit Button -->
-    <button type="submit">Register</button>
+  <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
+    <label for="name">Name:</label>
+    <input
+      id="name"
+      name="name"
+      [(ngModel)]="customer.name"
+      required
+    />
+  
+    <label for="email">Email:</label>
+    <input
+      id="email"
+      name="email"
+      type="email"
+      [(ngModel)]="customer.email"
+      required
+    />
+  
+    <label for="password">Password:</label>
+    <input
+      id="password"
+      name="password"
+      type="password"
+      [(ngModel)]="customer.password"
+      required
+    />
+  
+    <label for="phone">Phone Number:</label>
+    <input
+      id="phone"
+      name="phone"
+      type="tel"
+      [(ngModel)]="customer.phone"
+      required
+    />
+  
+    <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
+  
+    <button type="submit" [disabled]="!registerForm.valid">Register</button>
   </form>
-</div>
-
-<div class="back-home">
-  <a routerLink="/" routerLinkActive="active-link">Back to Home</a>
-</div>
+  

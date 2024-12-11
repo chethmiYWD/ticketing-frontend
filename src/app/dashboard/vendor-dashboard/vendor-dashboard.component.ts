@@ -1,5 +1,6 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { EventService } from '../../services/event.service'; // Import EventService
 import { FormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { RouterModule } from '@angular/router';
@@ -7,35 +8,28 @@ import { RouterModule } from '@angular/router';
 @Component({
   selector: 'app-vendor-dashboard',
   standalone: true,
-  imports: [CommonModule, FormsModule, RouterModule],
+  imports: [CommonModule, FormsModule, RouterModule], // Ensure FormsModule is here
   templateUrl: './vendor-dashboard.component.html',
   styleUrls: ['./vendor-dashboard.component.scss'],
 })
-export class VendorDashboardComponent {
-  events = [
-    {
-      id: 1,
-      name: 'Music Festival',
-      date: new Date('2024-12-20'),
-      maxTickets: 1000,
-      ticketsSold: 200,
-      ticketPrice: 50,
-    },
-    {
-      id: 2,
-      name: 'Art Gallery Exhibition',
-      date: new Date('2024-12-15'),
-      maxTickets: 500,
-      ticketsSold: 100,
-      ticketPrice: 30,
-    },
-  ];
-
-  newEvent = { name: '', date: '', maxTickets: 0, ticketPrice: 0 }; // Model for the new event form
+export class VendorDashboardComponent implements OnInit {
+  events: any[] = []; // Holds events fetched from the backend
+  newEvent = {
+    name: '',
+    date: '',
+    maxTickets: 0,
+    ticketPrice: 0,
+    totalTickets: 0,
+    ticketReleaseRate: 0,
+  };
   showAddEventForm = false; // Control the form visibility
   selectedEvent: any = null; // For displaying analytics for a selected event
 
-  constructor(private router: Router) {}
+  constructor(private router: Router, private eventService: EventService) {}
+
+  ngOnInit(): void {
+    this.fetchEvents(); // Fetch events when the component is initialized
+  }
 
   // Toggles visibility of the Add Event Form
   toggleAddEventForm(): void {
@@ -48,20 +42,53 @@ export class VendorDashboardComponent {
   }
 
   // Submit the new event
+  // Submit the new event
   onSubmit(eventForm: any): void {
     if (eventForm.valid) {
       const newEvent = {
         ...this.newEvent,
-        id: this.events.length + 1,
-        ticketsSold: 0, // Initially no tickets sold
-        date: new Date(this.newEvent.date), // Convert string to Date object
+        ticketsSold: 0,
+        date: new Date(this.newEvent.date),
       };
-      this.events.push(newEvent);
-      this.newEvent = { name: '', date: '', maxTickets: 0, ticketPrice: 0 }; // Reset form
-      this.showAddEventForm = false; // Hide form after submission
+  
+      this.eventService.createEvent(newEvent).subscribe(
+        (response) => {
+          console.log('Event created successfully:', response);
+          this.events.push(response);
+          this.newEvent = { name: '', date: '', maxTickets: 0, ticketPrice: 0, totalTickets: 0, ticketReleaseRate: 0 };
+          this.showAddEventForm = false;
+          this.router.navigateByUrl('/dashboard/vendor-dashboard').then(() => {
+            console.log('Redirected successfully!');
+          });
+        },
+        (error) => {
+          console.error('Error creating event:', error);
+          if (error.status === 404) {
+            console.error('API endpoint not found. Check the URL in EventService.');
+          } else if (error.status === 0) {
+            console.error('Network error. Backend may not be running.');
+          } else {
+            console.error(`Unexpected error: ${error.message}`);
+          }
+        }
+      );
     }
   }
   
+
+
+  // Fetch all events from the backend
+  fetchEvents(): void {
+    this.eventService.getEvents().subscribe(
+      (events) => {
+        console.log('Fetched events:', events);
+        this.events = events;
+      },
+      (error) => {
+        console.error('Error fetching events:', error);
+      }
+    );
+  }
 
   // Select an event to view analytics
   viewEventAnalytics(event: any): void {

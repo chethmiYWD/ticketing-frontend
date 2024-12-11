@@ -1,46 +1,30 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpHeaders } from '@angular/common/http';
+import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root',
+  providedIn: 'root'
 })
-export class ApiService {
-  private baseUrl = 'http://localhost:8080/api'; // Base URL for your backend
+// export class AuthService {
+//   private baseUrl = 'http://localhost:8080';  // Your backend API base URL
 
-  constructor(private httpClient: HttpClient) {}
+//   constructor(private http: HttpClient) {}
 
-  // POST method for login
+//   // Customer Registration
+//   registerCustomer(customer: any): Observable<any> {
+//     return this.http.post(`${this.baseUrl}/customers/register`, customer);
+//   }
+
+export class AuthService {
+  private apiUrl = 'http://localhost:8080/customers'; // Replace with your backend API URL
+
+  constructor(private http: HttpClient) {}
+
+  registerCustomer(customer: any): Observable<any> {
+    return this.http.post<any>(`${this.apiUrl}/register`, customer);
+  }
+  // Vendor Login
   login(credentials: { email: string; password: string }): Observable<any> {
-    const loginEndpoint = `${this.baseUrl}/auth/login`; // Full login URL
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-
-    return this.httpClient.post<any>(loginEndpoint, credentials, { headers });
-  }
-
-  // Generic GET method
-  get<T>(endpoint: string): Observable<T> {
-    const url = `${this.baseUrl}/${endpoint}`;
-    return this.httpClient.get<T>(url);
-  }
-
-  // Generic POST method
-  post<T>(endpoint: string, data: any): Observable<T> {
-    const url = `${this.baseUrl}/${endpoint}`;
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.httpClient.post<T>(url, data, { headers });
-  }
-
-  // Generic PUT method
-  put<T>(endpoint: string, data: any): Observable<T> {
-    const url = `${this.baseUrl}/${endpoint}`;
-    const headers = new HttpHeaders({ 'Content-Type': 'application/json' });
-    return this.httpClient.put<T>(url, data, { headers });
-  }
-
-  // Generic DELETE method
-  delete<T>(endpoint: string): Observable<T> {
-    const url = `${this.baseUrl}/${endpoint}`;
-    return this.httpClient.delete<T>(url);
+    return this.http.post(`${this.apiUrl}/login`, credentials);
   }
 }
