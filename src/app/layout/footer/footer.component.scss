@@ -1,3 +1,4 @@
+// Styles for footer
 .footer {
     background-color: #333;
     color: #fff;
@@ -13,29 +14,6 @@
       p {
         margin: 0;
         font-size: 0.9rem;
-      }
-  
-      .footer-links {
-        list-style: none;
-        padding: 0;
-        display: flex;
-        gap: 15px;
-  
-        li {
-          a {
-            color: #ff4081;
-            text-decoration: none;
-            font-size: 0.9rem;
-  
-            &:hover {
-              text-decoration: underline;
-            }
-  
-            &.active {
-              font-weight: bold;
-            }
-          }
-        }
       }
     }
   }
