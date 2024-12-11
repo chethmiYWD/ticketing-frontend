@@ -16,7 +16,7 @@ export class MyEventsComponent implements OnInit {
   constructor(private router: Router, private eventService: EventService) {}
 
   ngOnInit(): void {
-    this.fetchEvents();  // Fetch events when the component is initialized
+    this.fetchEvents();  
   }
 
   // Fetch all events from the backend
