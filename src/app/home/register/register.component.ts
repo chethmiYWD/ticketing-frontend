@@ -23,29 +23,8 @@ export class RegisterComponent {
   successMessage = '';
 
   constructor(private authService: AuthService, private router: Router) {}
-
-  // onSubmit(registerForm: any): void {
-  //   if (registerForm.valid) {
-  //     this.authService.registerCustomer(this.customer).subscribe({
-  //       next: (response) => {
-  //         console.log('Success:', response);  // Check what is returned here
-  //         this.successMessage = 'Registration successful!';
-  //         window.alert('Submission complete! Registration successful.');
-  //         this.router.navigate(['/']);
-  //       },
-  //       error: (error) => {
-  //         console.error('Error:', error);  // Check the error structure here
-  //         this.errorMessage = error?.error?.message || error?.message || 'Registration failed. Please try again.';
-  //       },
-  //       complete: () => {
-  //         console.log('Request completed.');
-  //       },
-  //     });
-  //   } else {
-  //     this.validateForm();
-  //   }
-  // }
   
+  // Form submission
   onSubmit(registerForm: any): void {
     if (registerForm.valid) {
       this.authService.registerCustomer(this.customer).subscribe({
@@ -55,6 +34,7 @@ export class RegisterComponent {
           window.alert('Submission complete! Registration successful.');
           this.router.navigate(['/']);
         },
+        // Error message on unsuccessfull submission
         error: (error) => {
           console.error('Error:', error);
           this.errorMessage = error?.error?.message || 'Registration failed. Please try again.';
@@ -68,8 +48,7 @@ export class RegisterComponent {
     }
   }
   
-  
-
+  // Form validation
   private validateForm(): void {
     if (!this.customer.name) {
       this.errorMessage = 'Name is required.';

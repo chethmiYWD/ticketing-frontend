@@ -1,5 +1,8 @@
+<!-- Register container -->
 <div class="register-container">
   <h2>Customer Registration</h2>
+
+  <!-- Form for registration -->
   <form #registerForm="ngForm" (ngSubmit)="onSubmit(registerForm)">
     <label for="name">Name:</label>
     <input
@@ -38,6 +41,7 @@
   
     <div *ngIf="errorMessage" class="error">{{ errorMessage }}</div>
   
+    <!-- Button too submit -->
     <button type="submit" [disabled]="!registerForm.valid">Register</button>
   </form>
   
