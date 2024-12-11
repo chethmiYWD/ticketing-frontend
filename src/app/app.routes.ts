@@ -10,9 +10,9 @@ export const routes: Routes = [
   { path: '', component: HomeComponent }, // Home route
   { path: 'login', component: LoginComponent }, // Login route
   { path: 'register', component: RegisterComponent }, // Register route
-  { path: 'vendor-dashboard', component: VendorDashboardComponent },
-  { path: 'vendor-dashboard/my-events', component: MyEventsComponent },
-  { path: 'customer-dashboard', component: CustomerDashboardComponent},
+  { path: 'vendor-dashboard', component: VendorDashboardComponent }, //Vendor dashboard
+  { path: 'vendor-dashboard/my-events', component: MyEventsComponent }, //Events
+  { path: 'customer-dashboard', component: CustomerDashboardComponent}, //Customer dashboard
   { path: '**', redirectTo: '' }, // Redirect invalid routes to Home
 ];
 
