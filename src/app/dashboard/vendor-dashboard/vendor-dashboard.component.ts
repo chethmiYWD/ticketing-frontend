@@ -60,7 +60,7 @@ export class VendorDashboardComponent implements OnInit {
           this.events.push(response);
           this.newEvent = { name: '', date: '', maxTickets: 0, ticketPrice: 0, totalTickets: 0, ticketReleaseRate: 0 };
           this.showAddEventForm = false;
-          this.router.navigateByUrl('/dashboard/vendor-dashboard').then(() => {
+          this.router.navigateByUrl('/vendor-dashboard').then(() => {
             console.log('Redirected successfully!');
           });
         },
