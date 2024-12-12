@@ -1,59 +1,103 @@
-# TicketingFrontend
 
-This project was generated using [Angular CLI](https://github.com/angular/angular-cli) version 19.0.2.
+# Real-Time Ticketing System
 
-## Development server
+The Real-Time Ticketing System is a multi-threaded application designed to simulate real-time ticket distribution and booking. It is built with a focus on concurrency, efficiency, and user-friendly operation. The system provides a graphical user interface (GUI) for customers and vendors to interact with the ticketing platform while a backend handles ticket allocation, retrieval, and logging.
 
-To start a local development server, run:
 
-```bash
+
+
+## Setup Instructions
+
+Ensure that the following are installed on your system:
+
+Java JDK: Version 11 or higher.
+
+Node.js: Version 16 or higher.
+
+Angular CLI: Version 15 or higher.
+
+MongoDB: Version 6 or higher (for data persistence).
+
+### Backend Setup
+
+Clone the backend repository
+git clone <https://github.com/chethmiYWD/ticketing-Backend.git>
+cd ticketing-backend
+
+Build the Spring Boot Application 
+./mvnw clean install 
+
+Run the application
+./mvnw spring-boot:run
+
+The backend will start at http://localhost:8080.
+
+### Frontend Setup
+
+Clone the frontend repository
+git clone <https://github.com/chethmiYWD/ticketing-frontend.git>
+cd tickeint-frontend
+
+Install dependencies
+npm install
+
+Run the Angular application
 ng serve
-```
 
-Once the server is running, open your browser and navigate to `http://localhost:4200/`. The application will automatically reload whenever you modify any of the source files.
+The frontend will be available at http://localhost:4200
 
-## Code scaffolding
+### CLI Setup
 
-Angular CLI includes powerful code scaffolding tools. To generate a new component, run:
+Clone the CLI repository
+git clone <https://github.com/chethmiYWD/TicketingSystem.git>
+cd TicketingSystem
 
-```bash
-ng generate component component-name
-```
 
-For a complete list of available schematics (such as `components`, `directives`, or `pipes`), run:
 
-```bash
-ng generate --help
-```
 
-## Building
 
-To build the project run:
 
-```bash
-ng build
-```
+## Usage Instructions
 
-This will compile your project and store the build artifacts in the `dist/` directory. By default, the production build optimizes your application for performance and speed.
+### Configuring the System
 
-## Running unit tests
+Update configurations for the backend in the application.properties file and setup the MongoDB connection string.
 
-To execute unit tests with the [Karma](https://karma-runner.github.io) test runner, use the following command:
+MongoDB should be running and accessible for persistent storage
 
-```bash
-ng test
-```
+### Starting the System
 
-## Running end-to-end tests
+Start the Spring Boot application as described in the setup
 
-For end-to-end (e2e) testing, run:
+Run the Angular application
 
-```bash
-ng e2e
-```
+Ensure that MongoDB is running
 
-Angular CLI does not come with an end-to-end testing framework by default. You can choose one that suits your needs.
+Use the CLI for direct commands and monitoring
 
-## Additional Resources
+### UI Controls
 
-For more information on using the Angular CLI, including detailed command references, visit the [Angular CLI Overview and Command Reference](https://angular.dev/tools/cli) page.
+#### Customer Dashboard
+
+Customer registration and login interface
+
+Filter events by name or artist using the search bar
+
+View event details 
+
+Use the "Book Ticket" button on an event card to reserve a ticket
+
+Logout feature
+
+#### Vendor Dashboard
+
+Vendor login feature by role identification
+
+Manage ticket releases for events
+
+Logout feature
+## Additional Notes
+
+For debugging, use backend logs and MongoDB collections
+
+Ensure network connectivity between the frontend and backend services
